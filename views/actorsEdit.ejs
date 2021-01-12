@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/actors/edit/<%= actor.id %> " method="POST">
+        <div>
+            <label for="">Nombre</label>
+            <input type="text" name="first_name" value="<%= actor.first_name %> ">
+        </div>
+        <div>
+            <label for="">Apellido</label>
+            <input type="text" name="last_name" value="<%= actor.last_name %> ">
+        </div>
+        <div>
+            <button type="submit">Editar</button>
+        </div>
+    </form>
+</body>
+</html>

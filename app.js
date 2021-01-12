@@ -5,6 +5,8 @@ const path = require('path'); //Requerimos path
 app.set("view engine", "ejs") //Aclaramos cual sera el motor del template
 app.set('views', path.resolve(__dirname, 'views')); //Aclaramos la carpeta vistas
 app.use(express.static("public")); //Definimos una carpeta  estatica: public.
+app.use(express.urlencoded({ extended: false }));
+
 
 app.get("/", function(req, res){ // Creamos rutas.
     res.render("index"); //Renderizamos la vista en "index" (no hace falta .ejs)

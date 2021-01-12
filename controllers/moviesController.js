@@ -35,5 +35,55 @@ module.exports = {
             .then(function(movies) {
                 res.render("moviesRecommended", {movies:movies});
             })
+    },
+    add: function(req, res) {
+        res.render('moviesCreate');
+    },
+    create: function(req, res) {
+        db.Movies.create({
+            title: req.body.title,
+            rating: req.body.rating,
+            length: req.body.length,
+            release_date: req.body.release_date,
+            awards: req.body.awards
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        });
+
+        res.redirect('/movies');
+    },
+    edit: function(req, res) {
+        db.Movies.findByPk(req.params.id)
+            .then(function(movie) {
+                res.render('moviesEdit', {movie:movie});
+            });
+    },
+    saved: function(req, res) {
+        db.Movies.update({
+            title: req.body.title,
+            rating: req.body.rating,
+            length: req.body.length,
+            release_date: req.body.release_date,
+            awards: req.body.awards
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        });
+
+        res.redirect('/movies/detail/' + req.params.id);
+    },
+    delete: function(req, res) {
+        db.Movies.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+
+        res.redirect('/movies');
     }
 }

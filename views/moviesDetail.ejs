@@ -11,5 +11,9 @@
     <h2><%= movie.length %> </h2>
     <h2><%= movie.release_date %> </h2>
     <h2><%= movie.awards %> </h2>
+    <a href="/movies/edit/<%= movie.id %> ">Editar</a>
+    <form action="/movies/delete/<%= movie.id %> " method="POST">
+        <button type="submit">Borrar</button>
+    </form>
 </body>
 </html>
