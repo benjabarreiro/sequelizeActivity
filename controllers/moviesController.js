@@ -8,7 +8,9 @@ module.exports = {
             })
     },
     detail: function(req, res) {
-        db.Movies.findByPk(req.params.id)
+        db.Movies.findByPk(req.params.id, {
+            include: [{association: "genres"}, {association: "actors"}]
+        })
             .then(function(movie) {
                 res.render('moviesDetail', {movie:movie});
             })
@@ -37,7 +39,10 @@ module.exports = {
             })
     },
     add: function(req, res) {
-        res.render('moviesCreate');
+        db.Genres.findAll()
+            .then(function(genres) {
+                res.render('moviesCreate', {genres:genres});
+            })
     },
     create: function(req, res) {
         db.Movies.create({
@@ -45,7 +50,8 @@ module.exports = {
             rating: req.body.rating,
             length: req.body.length,
             release_date: req.body.release_date,
-            awards: req.body.awards
+            awards: req.body.awards,
+            genre_id: req.body.genre
         },
         {
             where: {
@@ -56,9 +62,13 @@ module.exports = {
         res.redirect('/movies');
     },
     edit: function(req, res) {
-        db.Movies.findByPk(req.params.id)
-            .then(function(movie) {
-                res.render('moviesEdit', {movie:movie});
+        let moviePetition = db.Movies.findByPk(req.params.id);
+
+        let genresPetition = db.Genres.findAll();
+
+        Promise.all([moviePetition, genresPetition])
+            .then(function([movie, genres]) {
+                res.render('moviesEdit', {movie:movie, genres:genres});
             });
     },
     saved: function(req, res) {
@@ -67,7 +77,8 @@ module.exports = {
             rating: req.body.rating,
             length: req.body.length,
             release_date: req.body.release_date,
-            awards: req.body.awards
+            awards: req.body.awards,
+            genre_id: req.body.genre
         },
         {
             where: {

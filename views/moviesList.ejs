@@ -7,7 +7,11 @@
 </head>
 <body>
     <% for(let i=0; i<movies.length; i++) { %>
-        <a href="./movies/detail/<%= movies[i].id %>" ><h1><%= movies[i].title %> </h1></a>
+        <a href="./movies/detail/<%= movies[i].id %>" >
+            <h1>
+                <%= movies[i].title %>
+              </h1>
+        </a>
     <% } %>  
     <a href="/movies/create">Crear Película</a>
 </body>

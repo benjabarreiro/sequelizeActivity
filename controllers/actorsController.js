@@ -8,7 +8,9 @@ module.exports = {
             })
     },
     detail: function(req, res) {
-        db.Actors.findByPk(req.params.id)
+        db.Actors.findByPk(req.params.id, {
+            include: [{association: "movies"}]
+        })
             .then(function(actor) {
                 res.render('actorsDetail', {actor:actor});
             })

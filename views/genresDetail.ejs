@@ -7,5 +7,10 @@
 </head>
 <body>
     <h1><%= genre.name %></h1>
+    <ul>
+        <% for(let i=0; i<genre.movies.length; i++) { %>
+            <li><%= genre.movies[i].title %> </li> 
+        <% } %> 
+    </ul>
 </body>
 </html>

@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1><%= actor.first_name %> - <%= actor.last_name %>  </h1>
+    <ul>
+        <% for(let i=0; i<actor.movies.length; i++) { %> 
+            <li>
+                <%= actor.movies[i].title %> 
+            </li>
+        <% } %> 
+    </ul>
     <a href="/actors/edit/<%= actor.id %> ">Editar</a>
     <form action="/actors/delete/<%= actor.id %> " method="POST">
         <button type="submit">Eliminar</button>

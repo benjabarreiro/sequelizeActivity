@@ -8,7 +8,9 @@ module.exports = {
             })
     },
     detail: function(req, res) {
-        db.Genres.findByPk(req.params.id)
+        db.Genres.findByPk(req.params.id, {
+            include: [{association: "movies"}]
+        })
             .then(function(genre) {
                 res.render('genresDetail', {genre:genre});
             })

@@ -11,6 +11,12 @@
     <h2><%= movie.length %> </h2>
     <h2><%= movie.release_date %> </h2>
     <h2><%= movie.awards %> </h2>
+    <a href="/genres/detail/<%= movie.genres.id %>"> <h2><%= movie.genres.name %> </h2></a>
+    <ul>
+        <% for(let j=0; j<movie.actors.length; j++) { %> 
+            <a href="/actors/detail/ <%= movie.actors[j].id %>" ><li><%= movie.actors[j].first_name %> - <%= movie.actors[j].last_name %>  </li></a>
+        <% } %> 
+    </ul>
     <a href="/movies/edit/<%= movie.id %> ">Editar</a>
     <form action="/movies/delete/<%= movie.id %> " method="POST">
         <button type="submit">Borrar</button>

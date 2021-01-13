@@ -28,6 +28,22 @@
             <input type="text" name="awards" value="<%= movie.awards %> ">
         </div>
         <div>
+            <label for="">Género</label>
+            <select name="genre" id="">
+                <% for(let i=0; i<genres.length; i++) { %> 
+                    <% if(genres[i].id == movie.genre_id) { %> 
+                        <option value="<%= genres[i].id %> " selected>
+                        <%= genres[i].name %> 
+                        </option>
+                    <% } else { %> 
+                        <option value="<%= genres[i].id %> ">
+                            <%= genres[i].name %> 
+                        </option>
+                    <% } %>
+                <% } %>  
+            </select>
+        </div>
+        <div>
             <button type="submit">
                 Editar Película
             </button>
